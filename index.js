@@ -105,8 +105,9 @@ bot.on('message', message => {
                 message.channel.send("Joining your voice channel.");
                 play(connection, message)
             });
-            message.channel.send( `Song added to queue! ${server.queue.length} songs in queue.`);
             var server = servers[message.guild.id];
+            message.channel.send( `Song added to queue! ${server.queue.length} songs in queue.`);
+
 
             server.queue.push(args[1]);
         }
