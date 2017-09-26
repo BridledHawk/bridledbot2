@@ -109,10 +109,10 @@ bot.on('message', message => {
                 play(connection, message)
             });
             var server = servers[message.guild.id];
-            message.channel.send( `Song added to queue! ${server.queue.length + 1} songs in queue.`);
-
 
             server.queue.push(args[1]);
+
+            message.channel.send( `Song added to queue! ${server.queue.length} songs in queue.`);
         }
         if (!args[1].includes("https://www.youtube.com/watch")) {
             message.channel.send('Invalid Link. Make sure the link is like the following: `https://www.youtube.com/watch?v=aPXU_2vDmi8`');
@@ -121,7 +121,7 @@ bot.on('message', message => {
 
     if (message.content.startsWith(prefix + 'skip')) {
         var server = servers[message.guild.id];
-        message.channel.send( `Song skipped! ${server.queue.length + 1} songs in queue.`);
+        message.channel.send( `Song skipped! ${server.queue.length} songs in queue.`);
         if (server.dispatcher) server.dispatcher.end();
     }
 
