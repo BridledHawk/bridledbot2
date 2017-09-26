@@ -90,7 +90,7 @@ bot.on('message', message => {
 
     if (message.content.startsWith(prefix + 'play')) {
         if(!args[1]) {
-            message.channel.send("Provide a link, asshole!");
+            message.channel.send("Provide a link!");
             return;
         }
 
@@ -114,15 +114,15 @@ bot.on('message', message => {
 
             message.channel.send( `Song added to queue! ${server.queue.length} songs in queue.`);
         }
-        if (!args[1].includes("https://www.youtube.com/watch")) {
+        if (!args[1].includes("https://www.youtube.com/watch?v=")) {
             message.channel.send('Invalid Link. Make sure the link is like the following: `https://www.youtube.com/watch?v=aPXU_2vDmi8`');
         }
     }
 
     if (message.content.startsWith(prefix + 'skip')) {
         var server = servers[message.guild.id];
-        message.channel.send( `Song skipped! ${server.queue.length} songs in queue.`);
         if (server.dispatcher) server.dispatcher.end();
+        message.channel.send( `Song skipped! ${server.queue.length-1} songs in queue.`);
     }
 
     if (message.content.startsWith(prefix + 'disconnect')) {
