@@ -13,7 +13,10 @@ function play(connection, message) {
     server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
     server.queue.shift();
     server.dispatcher.on("end", function() {
-        if (server.queue[0]) play(connection, message);
+        if (server.queue[0]) {
+            play(connection, message);
+            message.channel.send( `${server.queue.length} songs in queue.`);
+        }
         else connection.disconnect();
     })
 }
@@ -118,7 +121,7 @@ bot.on('message', message => {
 
     if (message.content.startsWith(prefix + 'skip')) {
         var server = servers[message.guild.id];
-        message.channel.send('Song skipped!');
+        message.channel.send( `Song skipped! ${server.queue.length} songs in queue.`);
         if (server.dispatcher) server.dispatcher.end();
     }
 
