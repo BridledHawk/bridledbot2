@@ -15,7 +15,7 @@ function play(connection, message) {
     server.dispatcher.on("end", function() {
         if (server.queue[0]) {
             play(connection, message);
-            message.channel.send( `${server.queue.length} songs in queue.`);
+            message.channel.send( `${server.queue.length + 1} songs in queue.`);
         }
         else connection.disconnect();
     })
@@ -109,7 +109,7 @@ bot.on('message', message => {
                 play(connection, message)
             });
             var server = servers[message.guild.id];
-            message.channel.send( `Song added to queue! ${server.queue.length} songs in queue.`);
+            message.channel.send( `Song added to queue! ${server.queue.length + 1} songs in queue.`);
 
 
             server.queue.push(args[1]);
@@ -121,7 +121,7 @@ bot.on('message', message => {
 
     if (message.content.startsWith(prefix + 'skip')) {
         var server = servers[message.guild.id];
-        message.channel.send( `Song skipped! ${server.queue.length} songs in queue.`);
+        message.channel.send( `Song skipped! ${server.queue.length + 1} songs in queue.`);
         if (server.dispatcher) server.dispatcher.end();
     }
 
