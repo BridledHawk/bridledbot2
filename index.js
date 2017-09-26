@@ -15,7 +15,7 @@ function play(connection, message) {
     server.dispatcher.on("end", function() {
         if (server.queue[0]) {
             play(connection, message);
-            message.channel.send( `${server.queue.length + 1} songs in queue.`);
+            message.channel.send( `${server.queue.length} songs in queue.`);
         }
         else connection.disconnect();
     })
