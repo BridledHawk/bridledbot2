@@ -113,7 +113,7 @@ bot.on('message', message => {
         }
 
 
-        if (args[1].includes("https://www.youtube.com/watch")) {
+        if (YTDL.validateLink(args[1])) {
             if(!servers[message.guild.id]) servers[message.guild.id] = {
                 queue: []
             }
