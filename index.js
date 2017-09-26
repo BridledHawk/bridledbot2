@@ -14,6 +14,9 @@ function play(connection, message) {
     server.queue.shift();
     server.dispatcher.on("end", function() {
         if (server.queue[0]) {
+            YTDL.getInfo(server.queue[0], function(err, info){
+                message.channel.send(`Now playing: ${info.title}`)
+            };
             play(connection, message);
         }
         else connection.disconnect();
@@ -100,7 +103,7 @@ bot.on('message', message => {
             return;
         }
     }
-
+//    console.log(
     if (message.content.startsWith(prefix + 'play')) {
         if(!args[1]) {
             message.channel.send("Provide a link!");
