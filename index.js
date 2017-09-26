@@ -21,6 +21,7 @@ function play(connection, message) {
 }
 var port = process.env.PORT || 8000
 var servers = {};
+var toggleq = true;
 // bot.on('',''=> {});
 
 //log in console and give info in chat
@@ -87,6 +88,19 @@ bot.on('message', message => {
         message.channel.send('Test successfull!');
     }
 
+    if (message.content.startsWith(prefix + 'toggleq')) {
+        if (toggleq) {
+            toggleq = false;
+            message.channel.send("Music queue turned off!");
+            return;
+        }
+        if (!toggleq) {
+            toggleq = true;
+            message.channel.send("Music queue turned on!");
+            return;
+        }
+    }
+
     if (message.content.startsWith(prefix + 'play')) {
         if(!args[1]) {
             message.channel.send("Provide a link!");
@@ -108,8 +122,17 @@ bot.on('message', message => {
                 play(connection, message)
             });
             var server = servers[message.guild.id];
-
-            server.queue.push(args[1]);
+            if (toggleq) {
+                server.queue.push(args[1]);
+            }
+            if (!toggleq) {
+                if (server.queue.length <= 0) {
+                    server.queue.push(args[1]);
+                }
+                else {
+                    message.channel.send(`Music queue is set to off. type ${bot.commandPrefix}toggleq to enable it.`)
+                }
+            }
 
             message.channel.send( `Song added to queue! ${server.queue.length} songs in queue.`);
         }
