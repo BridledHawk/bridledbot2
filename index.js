@@ -124,17 +124,17 @@ bot.on('message', message => {
             var server = servers[message.guild.id];
             if (toggleq) {
                 server.queue.push(args[1]);
+                message.channel.send( `Song added to queue! ${server.queue.length} songs in queue.`);
             }
             if (!toggleq) {
                 if (server.queue.length <= 0) {
                     server.queue.push(args[1]);
+                    message.channel.send( `Song added to queue! ${server.queue.length} songs in queue.`);
                 }
                 else {
                     message.channel.send(`Music queue is set to off. type ${bot.commandPrefix}toggleq to enable it.`)
                 }
             }
-
-            message.channel.send( `Song added to queue! ${server.queue.length} songs in queue.`);
         }
         if (!args[1].includes("https://www.youtube.com/watch?v=")) {
             message.channel.send('Invalid Link. Make sure the link is like the following: `https://www.youtube.com/watch?v=aPXU_2vDmi8`');
