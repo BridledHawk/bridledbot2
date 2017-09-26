@@ -123,6 +123,9 @@ bot.on('message', message => {
             if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
                 message.channel.send("Joining your voice channel.");
                 play(connection, message)
+                YTDL.getInfo(server.queue[0], function(err, info){
+                    message.channel.send(`Now playing: \`${info.title}\``)
+                });
             });
             var server = servers[message.guild.id];
             if (toggleq) {
