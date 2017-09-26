@@ -120,8 +120,8 @@ bot.on('message', message => {
 
     if (message.content.startsWith(prefix + 'skip')) {
         var server = servers[message.guild.id];
-        if (server.dispatcher) server.dispatcher.end();
         message.channel.send( `Song skipped! ${server.queue.length} songs in queue.`);
+        if (server.dispatcher) server.dispatcher.end();
     }
 
     if (message.content.startsWith(prefix + 'disconnect')) {
