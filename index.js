@@ -168,11 +168,6 @@ bot.on('message', message => {
             return;
         }
     }
-    if (message.content.startsWith(prefix + 'join')) {
-        message.member.voiceChannel.join().then(function(connection) {
-        message.channel.send("Joining your voice channel.");
-        }
-    )}
 
     if (message.content.startsWith(prefix + 'setgame')) {
         bot.user.setGame(args[1]);
