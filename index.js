@@ -136,7 +136,7 @@ bot.on('message', message => {
                 }
             }
         }
-        if (!args[1].includes("https://www.youtube.com/watch?v=")) {
+        if (!YTDL.validateLink(args[1])) {
             message.channel.send('Invalid Link. Make sure the link is like the following: `https://www.youtube.com/watch?v=aPXU_2vDmi8`');
         }
     }
