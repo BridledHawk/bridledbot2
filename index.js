@@ -15,7 +15,7 @@ function play(connection, message) {
     server.dispatcher.on("end", function() {
         if (server.queue[0]) {
             YTDL.getInfo(server.queue[0], function(err, info){
-                message.channel.send(`Now playing: ${info.title}`)
+                message.channel.send(`Now playing: \`${info.title}\``)
             });
             play(connection, message);
         }
