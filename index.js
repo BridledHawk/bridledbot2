@@ -11,7 +11,6 @@ const bot = new commando.Client({
 function play(connection, message) {
     var server = servers[message.guild.id];
     server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
-    message.channel.send( `${server.queue.length} songs in queue.`);
     server.queue.shift();
     server.dispatcher.on("end", function() {
         if (server.queue[0]) {
