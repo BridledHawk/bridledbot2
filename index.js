@@ -9,11 +9,7 @@ const bot = new commando.Client({
     unknownCommandResponse: false
 });
 
-function taim() {
-        message.channel.sendMessage("Thy Art Is Murder", {
-        file: "http://www.rockfeed.net/wp-content/uploads/2016/10/thy-art-is-murder-logo.jpg"
-        });
-}
+const taimembed = new discord.RichEmbed().setImage("http://www.rockfeed.net/wp-content/uploads/2016/10/thy-art-is-murder-logo.jpg")
 
 function play(connection, message) {
     var server = servers[message.guild.id];
@@ -24,8 +20,8 @@ function play(connection, message) {
             YTDL.getInfo(server.queue[0], function(err, info){
                 message.channel.send(`Now playing: \`${info.title}\``)
                 if (info.title.toLocaleLowerCase.includes('thy art is murder')) {
-                    taim();
-                }
+                    message.channel.send({taimembed});
+                };
             });
             play(connection, message);
         }
