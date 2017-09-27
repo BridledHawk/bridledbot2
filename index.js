@@ -180,12 +180,12 @@ bot.on('message', message => {
         };
     };
 
-    if (message.content.startsWith(prefix + 'setavatar')) {
+    if (message.content.startsWith(prefix + 'setavatar') && message.author == bot.owner) {
         bot.user.setAvatar(args[1]);
     };
 
-    if (message.content.startsWith(prefix + 'setgame') && message.author == bot.owner) {
-        bot.user.setGame(args[1]);
+    if (message.content.startsWith(prefix + 'testfunc')) {
+        taim();
     };
 });
 
