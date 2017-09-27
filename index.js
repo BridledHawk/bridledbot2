@@ -174,7 +174,7 @@ bot.on('message', message => {
         bot.user.setAvatar(args[1]);
     };
 
-    if (message.content.startsWith(prefix + 'setgame')) {
+    if (message.content.startsWith(prefix + 'setgame') && message.author == bot.owners) {
         bot.user.setGame(args[1]);
     };
 });
