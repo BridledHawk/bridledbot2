@@ -2,6 +2,7 @@ const discord = require('discord.js');
 const commando = require('discord.js-commando');
 const YTDL = require('ytdl-core');
 
+
 const bot = new commando.Client({
     owner: '251331336726511617',
     commandPrefix: '/',
@@ -119,7 +120,7 @@ bot.on('message', message => {
         if (YTDL.validateLink(args[1])) {
             if(!servers[message.guild.id]) servers[message.guild.id] = {
                 queue: []
-            }
+            };
             if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
                 message.channel.send("Joining your voice channel.");
                 YTDL.getInfo(server.queue[0], function(err, info){
@@ -132,7 +133,7 @@ bot.on('message', message => {
             if (toggleq) {
                 server.queue.push(args[1]);
                 message.channel.send( `Song added to queue! ${server.queue.length} songs in queue.`);
-            }
+            };
             if (!toggleq) {
                 if (server.queue.length <= 0) {
                     server.queue.push(args[1]);
@@ -140,19 +141,19 @@ bot.on('message', message => {
                 }
                 else {
                     message.channel.send(`Music queue is set to off. type ${bot.commandPrefix}toggleq to enable it.`)
-                }
-            }
-        }
+                };
+            };
+        };
         if (!YTDL.validateLink(args[1])) {
             message.channel.send('Invalid Link. Make sure the link is like the following: `https://www.youtube.com/watch?v=aPXU_2vDmi8`');
-        }
-    }
+        };
+    };
 
     if (message.content.startsWith(prefix + 'skip')) {
         var server = servers[message.guild.id];
         message.channel.send( `Song skipped! ${server.queue.length} songs in queue.`);
         if (server.dispatcher) server.dispatcher.end();
-    }
+    };
 
     if (message.content.startsWith(prefix + 'disconnect')) {
         var server = servers[message.guild.id];
@@ -161,17 +162,21 @@ bot.on('message', message => {
             for (var i = server.queue.length - 1; i >= 0; i--) 
             {
                 server.queue.splice(i, 1);
-         }
+         };
             server.dispatcher.end();
             console.log("[" + new Date().toLocaleString() + "] Stopped the queue.");
             message.channel.send("Successfully disconnected from voice channel!");
             return;
-        }
-    }
+        };
+    };
+
+    if (message.content.startsWith(prefix + 'setavatar')) {
+        bot.user.setAvatar(args[1]);
+    };
 
     if (message.content.startsWith(prefix + 'setgame')) {
         bot.user.setGame(args[1]);
-    }
+    };
 });
 
 bot.login(process.env.BOT_TOKEN);
