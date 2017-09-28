@@ -183,6 +183,10 @@ bot.on('message', message => {
     if (message.content.startsWith(prefix + 'testfunc')) {
         taim();
     };
+
+    if (message.content.toLowerCase.includes('xd')) {
+        message.channel.send('xD');
+    };
 });
 
 bot.login(process.env.BOT_TOKEN);
