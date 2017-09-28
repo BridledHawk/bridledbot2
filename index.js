@@ -176,7 +176,7 @@ bot.on('message', message => {
         };
     };
 
-    if (message.content.startsWith(prefix + 'setavatar') && message.author.id == bot.owner) {
+    if (message.content.startsWith(prefix + 'setavatar')) {
         bot.user.setAvatar(args[1]);
     };
 
