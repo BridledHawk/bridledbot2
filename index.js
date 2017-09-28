@@ -18,7 +18,7 @@ function play(connection, message) {
     server.dispatcher.on("end", function() {
         if (server.queue[0]) {
             YTDL.getInfo(server.queue[0], function(err, info){
-                message.channel.send(`Now playing: \`${info.title}\``)
+                message.channel.send(`Now playing: \`${info.title}\``);
                 if (info.title.toLocaleLowerCase.includes('thy art is murder')) {
                     message.channel.send({taimembed});
                 };
@@ -176,7 +176,7 @@ bot.on('message', message => {
         };
     };
 
-    if (message.content.startsWith(prefix + 'setavatar') && message.author == bot.owner) {
+    if (message.content.startsWith(prefix + 'setavatar') && message.author.id == bot.owner) {
         bot.user.setAvatar(args[1]);
     };
 
