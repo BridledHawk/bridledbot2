@@ -184,9 +184,6 @@ bot.on('message', message => {
         taim();
     };
 
-    if (message.content.toLowerCase.includes('xd')) {
-        message.channel.send('xD');
-    };
 });
 
 bot.login(process.env.BOT_TOKEN);
