@@ -10,6 +10,7 @@ const bot = new commando.Client({
 });
 
 const taimembed = new discord.RichEmbed().setImage("http://www.rockfeed.net/wp-content/uploads/2016/10/thy-art-is-murder-logo.jpg")
+const pwdembed = new discord.RichEmber().setImage("http://epitaph.com/media/artists/ParkwayDrive_Logo.jpg.928x0_q90.jpg")
 
 function play(connection, message) {
     var server = servers[message.guild.id];
